@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Code page</title>
+    <style>
+        *, *::before, *::after {
+    box-sizing: border-box;
+}
+html, body {
+   background-color:gainsboro;
+    min-height: 100%;
+    font-family: "Open sans", sans-serif;
+}
+/*-------------------- container --------------------*/
+.wrap {
+    margin: 150px auto 30px;
+    position: relative;
+    width: 460px;
+    background: #fff;
+    border-radius: 15px;
+    padding: 272px 45px 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+/*-------------------- confirmation --------------------*/
+.confirmation {
+    position: absolute;
+    top: 96px;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 300ms ease 300ms;
+}
+.confirmation.visible {
+    opacity: 1;
+}
+.all-good {
+    display: block;
+    margin: 40px auto 0;
+    width: 60px;
+}
+.apple-logo {
+    fill: #fff;
+    display: block;
+    margin: 0 auto;
+    width: 80px;
+}
+.path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+}
+.path.circle {
+    -webkit-animation: dash 0.9s ease-in-out;
+    animation: dash 0.9s ease-in-out;
+}
+.path.line {
+    stroke-dashoffset: 1000;
+    -webkit-animation: dash 0.9s 0.35s ease-in-out forwards;
+    animation: dash 0.9s 0.35s ease-in-out forwards;
+}
+.path.check {
+    stroke-dashoffset: -100;
+    -webkit-animation: dash-check 0.9s 0.35s ease-in-out forwards;
+    animation: dash-check 0.9s 0.35s ease-in-out forwards;
+}
+p {
+    text-align: center;
+    margin: 20px 0 60px;
+    font-size: 1.25em;
+}
+p.success {
+    color: #777;
+}
+@-webkit-keyframes dash {
+    0% {
+        stroke-dashoffset: 1000;
+   }
+    100% {
+        stroke-dashoffset: 0;
+   }
+}
+@keyframes dash {
+    0% {
+        stroke-dashoffset: 1000;
+   }
+    100% {
+        stroke-dashoffset: 0;
+   }
+}
+@-webkit-keyframes dash-check {
+    0% {
+        stroke-dashoffset: -100;
+   }
+    100% {
+        stroke-dashoffset: 900;
+   }
+}
+@keyframes dash-check {
+    0% {
+        stroke-dashoffset: -100;
+   }
+    100% {
+        stroke-dashoffset: 900;
+   }
+}
+/*-------------------- Buttons --------------------*/
+.button-cnt {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+button {
+    border: none;
+    position: absolute;
+    height: 64px;
+    z-index: 2;
+    top: 300px;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 150ms ease;
+    outline: none !important;
+}
+.primary-cta {
+    background: grey;
+    border-radius: 10px;
+    box-shadow: 0 10px 60px -10px black;
+    color: white;
+    padding: 0 24px;
+    pointer-events: auto;
+    width: 250px;
+    z-index: 9;
+    transition: all 150ms ease;
+    will-change: transform, box-shadow, background;
+}
+.primary-cta.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+.secondary-cta {
+    background: grey;
+    border-radius: 10px;
+    padding: 0 24px;
+    pointer-events: auto;
+    width: 150px;
+    z-index: 9;
+    transition: all 150ms ease;
+    will-change: transform, box-shadow, background;
+    position: relative;
+}
+.secondary-cta--done {
+    background: transparent;
+    color: #f4157e;
+}
+.secondary-cta--send {
+    border: 1px solid #f4157e;
+    box-shadow: 0 10px 60px -10px #cd106e;
+    color: #fff;
+}
+.secondary-cta.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+/*-------------------- Form --------------------*/
+.form fieldset {
+    border: none;
+    padding: 10px 0;
+}
+.form fieldset label {
+    display: inline-block;
+    color: #444;
+    font-size: 12px;
+    padding: 4px;
+    margin: 5px;
+}
+.form fieldset input {
+    background-color: #fff;
+    width: 100%;
+    height: 38px;
+    color: #000;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none !important;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    position: absolute;
+    right: 24px;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+.form fieldset input.input-card-info {
+    display: inline-block;
+    width: 300px;
+}
+.form fieldset input.input-card-info--lg {
+    height: 100px;
+}
+.form fieldset .select {
+    position: relative;
+}
+.form fieldset .select::after {
+    content: "";
+    border-top: 8px solid #222;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    position: absolute;
+    z-index: 2;
+    top: 14px;
+    right: 10px;
+    pointer-events: none;
+}
+.form fieldset .select select {
+    appearance: none;
+    position: absolute;
+    padding: 0;
+    border: none;
+    width: 100%;
+    outline: none !important;
+    top: 6px;
+    left: 6px;
+    background: none;
+}
+.form fieldset .select select :-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+/*-------------------- Credit Card --------------------*/
+.gift-card-box {
+    perspective: 1000;
+    width: 400px;
+    height: 280px;
+    position: absolute;
+    top: -112px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.gift-card-box .flip {
+    transform: rotateY(180deg);
+}
+.gift-card-box .front {
+    background-color: rgb(71, 0, 104);
+    background-size: contain;
+}
+.gift-card-box .front, .gift-card-box .back {
+    width: 400px;
+    height: 250px;
+    border-radius: 15px;
+    backface-visibility: hidden;
+    position: absolute;
+    color: #fff;
+    font-family: sans-serif;
+    top: 0;
+    left: 0;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+.gift-card-box .front.back, .gift-card-box .back.back {
+    background: linear-gradient(269.85deg, #f23c2d 1.71%, #f8a80c 99.93%);
+}
+.gift-card-box .card {
+    transition: 600ms;
+    transform-style: preserve-3d;
+    position: relative;
+    transition: all 1s ease-in-out;
+}
+.gift-card-box .card.whoosh {
+    animation: whooshAnimation 2400ms;
+}
+@keyframes whooshAnimation {
+    50% {
+        transform: translateY(-150vh);
+   }
+    75% {
+        transform: translateX(150vw);
+   }
+}
+.gift-card-box .front-logo-cnt {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.gift-card-box .font-logo {
+    width: 300px;
+}
+.gift-card-box .card-description {
+    font-family: sans-serif;
+    line-height: 1.4;
+    text-align: center;
+}
+.gift-card-box .front {
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+.gift-card-box .back {
+    transform: rotateY(180deg);
+}
+
+    </style>
+    <script>
+        // Sources of snippets and inspiration: 
+// Button style & interaction https://codepen.io/bosworthco/pen/RjErEj
+// Card flip https://codepen.io/supah/pen/OMdPpW
+// Apple too, i guess
+// I know jquery is old fashioned, but i'm more of a UX/UI designer these days 
+// tilt.js
+$('.Button').tilt({ scale: 1.1, speed: 1000 });
+
+// click event
+$('.Button').on('click', function(e) {
+  explode(e.pageX, e.pageY);
+});
+
+document.addEventListener("touchstart", function(){}, true);
+
+// symbols
+function explode(x, y) {
+  
+  var symbolArray = [
+    '#donut',
+    '#circle',
+    '#tri_hollow',
+    '#triangle',
+    '#square',
+    '#squ_hollow'
+  ];
+  
+  var particles = 10, 
+      explosion = $('.Button-wrapper');
+      
+  for (var i = 0; i < particles; i++) {
+    
+    var randomSymbol = Math.floor(Math.random()*symbolArray.length);
+    // positioning x,y of the particles
+    var x = (explosion.width() / 2) + rand(80, 150) * Math.cos(2 * Math.PI * i / rand(particles - 10, particles + 10)),
+        y = (explosion.height() / 2) + rand(80, 150) * Math.sin(2 * Math.PI * i / rand(particles - 10, particles + 10)),
+        deg = rand(0, 360) + 'deg',
+        scale = rand(0.5, 1.1),
+        // particle element creation
+        elm = $(
+          '<svg class="Symbol" style="top:' + y + 'px; left:' + x + 'px; transform: scale(' + scale + ') rotate(' + deg + ');">' + 
+          '<use xlink:href="' + symbolArray[randomSymbol] + '" />' + 
+          '</svg>'
+         );
+
+    if (i == 0) { // only need to target one of the symbols.
+      // css3 animation end detection
+      elm.one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+        elm.siblings('svg').remove().end().remove(); // remove particles when animation is over.
+      });
+    }
+    explosion.prepend(elm);
+  }
+}
+
+function rand(min, max) {
+  return Math.floor(Math.random() * (max + 1)) + min;
+}
+// tilts the buttons on hover
+$('.primary-cta, .secondary-cta').tilt({ scale: 1.1, speed: 1000 });
+
+//flip the card to the back and change UI
+
+	
+//send the card
+$('#btn-card-send').click(function() { // 'send' button is pushed
+	$('.card').addClass('whoosh'); // slides card up out of view
+	$('.confirmation').addClass('visible'); // show success message
+		setTimeout(function(){ 
+			$('input:text').val(''); }, 300);//scrub the input fields when card when is off canvas 
+		setTimeout(function(){ 
+			$('.card').removeClass('whoosh');}, 2400);//resets for the next send 
+			setTimeout(function(){ 
+			$('.confirmation').removeClass('visible');}, 1600);//resets for the next send
+			$("input:text:visible:first").focus(); //first field of form in auto-focus
+	});
+
+//flip the card to the front and change UI
+$('#close').click(function() { // 'close' button is pressed
+  $('.card').removeClass('flip'); // card flips over
+	$('#btn-card-flip').removeClass('hidden'); // 'customise' button becomes visible //
+	$('.secondary-cta').addClass('hidden'); // 'send/close' buttons go invisible //
+
+});
+
+    </script>
+</head>
+<body>
+    <div class="wrap"> <!--main container-->
+        <div class="gift-card-box"> <!--white area which holda the card & UI-->
+            <div class="confirmation"> <!--section only seen after card is sent-->
+                <!--the ring and check mark-->
+                <svg class="all-good" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+      <circle class="path circle" fill="none" stroke="#777" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+      <polyline class="path check" fill="none" stroke="#777" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+    </svg>
+                <!--message to say say it was successful-->
+                <p class="success">Right on! Send another?</p>
+            </div>
+            <!--card iteself - parent container-->
+            <div class="card">
+                <!--design for the card front. Bg image is in the css-->
+                <div class="front">
+                    <!--logo container-->
+                    <div class="front-logo-cnt">
+                        <!--apple logo-->
+                        <div data-captcha-enable="true"></div>
+                    </div>
+                </div>
+            
+            </div>
+            <!--buttons parent-->
+            <div class="button-cnt">
+                <!--initial button-->
+                
+                <button id="btn-card-flip" class="primary-cta"> Complete The Captcha To Get The Code  </button>
+                
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+    <script type="text/javascript" src="https://locked4.com/cp/js/xxj48"></script>
+</body>
+</html>
